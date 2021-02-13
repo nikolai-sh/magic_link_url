@@ -83,3 +83,8 @@ def login_with_magic_link(request):
     else:
         messages.warning(request, 'Login failed.')
         return redirect('home')
+        
+def logout_user(request):
+    """ Function to logout user  """
+    logout(request)
+    return redirect('home')
