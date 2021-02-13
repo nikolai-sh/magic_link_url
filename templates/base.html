@@ -30,7 +30,7 @@
               <div class="navbar-nav">
                 {% if user.is_authenticated %}
                 <a class="nav-item nav-link" href="#">{{ user.email }}</a>
-                <a class="nav-item nav-link" href="">Visits</a>
+                <a class="nav-item nav-link" href="{% url 'visits' %}">Visits</a>
                 <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
                 {% else %}
                 <a class="nav-item nav-link" href="{% url 'send-magic-link' %}">LogIn</a>
