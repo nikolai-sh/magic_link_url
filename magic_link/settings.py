@@ -121,5 +121,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    BASE_DIR/'static',
+]
+
 #Custom User model
 AUTH_USER_MODEL = 'magic_link_auth.User'
