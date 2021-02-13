@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'magic_link_auth'
+    'magic_link_auth',
+     'crispy_forms',
 ]
 
 MIDDLEWARE = [
