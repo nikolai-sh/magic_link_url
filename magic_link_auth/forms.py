@@ -13,3 +13,8 @@ class UserRegisterForm(UserCreationForm):
         model = User
         fields = ['email']
 
+class EmailForm(forms.Form):
+    """
+    Class for creating email form to send magic link. 
+    """
+    email = forms.EmailField(required=True)
