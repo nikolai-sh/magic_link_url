@@ -7,7 +7,9 @@ from django.contrib.auth import login, logout
 from .forms import UserRegisterForm, EmailForm
 from django.utils.http import urlsafe_base64_decode
 from django.core.mail import send_mail, BadHeaderError
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.tokens import default_token_generator
+
 
 def home(request):
     return render(request, 'magic_link_auth/home.html')
@@ -83,8 +85,17 @@ def login_with_magic_link(request):
     else:
         messages.warning(request, 'Login failed.')
         return redirect('home')
-        
+
 def logout_user(request):
     """ Function to logout user  """
     logout(request)
     return redirect('home')
+
+
+@login_required(login_url='home')
+def visits_list(request):
+    """
+    Function that shows the number of users and their visits.
+    """
+    users = User.objects.all()
+    return render(request, 'magic_link_auth/visits_list.html', context={'users': users})
