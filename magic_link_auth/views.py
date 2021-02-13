@@ -1,9 +1,13 @@
 from .models import User
+from django.db.models import F    
 from django.contrib import messages
 from .services import get_magic_link
 from django.shortcuts import redirect, render
+from django.contrib.auth import login, logout
 from .forms import UserRegisterForm, EmailForm
+from django.utils.http import urlsafe_base64_decode
 from django.core.mail import send_mail, BadHeaderError
+from django.contrib.auth.tokens import default_token_generator
 
 def home(request):
     return render(request, 'magic_link_auth/home.html')
@@ -56,3 +60,26 @@ def send_magic_link(request):
             return redirect('home')
 
     return render(request, "magic_link_auth/send_magic_link_form.html", {'form': email_form})
+
+def login_with_magic_link(request):
+    """
+    Function get user_id and token from magic link url,
+    check it, if correct: login user and increases visits.
+    """
+    user_id = urlsafe_base64_decode(
+        request.GET.get('uidb64')).decode()
+    token = request.GET.get('token')
+    user = User.objects.get(id=user_id)
+
+    if default_token_generator.check_token(
+        user,
+        token,
+    ):
+        login(request=request, user=user)
+       
+        user.visits = F('visits') + 1
+        user.save()
+        return redirect('home')
+    else:
+        messages.warning(request, 'Login failed.')
+        return redirect('home')
