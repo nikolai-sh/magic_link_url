@@ -1,4 +1,4 @@
-##Test assignment
+## Test assignment
 
 Problem: 
 We want to create an authentication solution that doesn’t require our users to input an email/password.  We want to be able to generate a magic link that works for a specific user’s email until we remove access.
@@ -16,9 +16,9 @@ You create a simple view where we can see the counts (visits) going up.
 Use one of python web frameworks of your choice (Flask, Django, FastAPI, ...) for the backend.
 Deploy the app in Heroku (Free account).
 
-##Solution explanation 
+## Solution explanation 
 
-I used the Django framework for this task. 
+### I used the Django framework for this task. 
 
 * Created a modified User with fields email, password, visits. For this I used the AbstractUser django class. Since was modified User, it is necessary to create the modified UserManager using the BaseUserManager class. 
 
