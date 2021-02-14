@@ -1,10 +1,10 @@
 # magic_link_url
 
-You can test this application at: https://test-magic-link-url.herokuapp.com/
-
 Django application in which the logging system is implemented using magic link url.
 
 For an explanation of the implementation of this application, see DOCS.txt.
+
+You can test this application at: https://test-magic-link-url.herokuapp.com/
 
 ## Quick Start
 
