@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'q7a1zu5z7(w&(m_z))4p^r75ku9sbjy_(44_!g4%a=crj@c3=j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['test-magic-link-url.herokuapp.com', '127.0.0.1']
 
@@ -147,8 +147,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
+EMAIL_HOST_USER = os.environ['EMAIL_USER']
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_PASS']
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
